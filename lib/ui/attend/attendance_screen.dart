@@ -3,6 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 class AttendanceScreen extends StatefulWidget {
   final XFile? image;
@@ -120,12 +121,31 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                     color: Colors.blueAccent,
                     strokeWidth: 1,
                     dashPattern: const [5, 5],
-                    child: const SizedBox.expand(
+                    child: SizedBox.expand(
                       child: FittedBox(
-                        
+                        child: image != null 
+                        ? Image.file(File(image!.path), fit: BoxFit.cover,)
+                        : const Icon(Icons.camera_enhance_outlined),
                       ),
                     ),
                   ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextField(
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.text,
+                  controller: controller,
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                    labelText: "Your Name",
+                    hintText: "Please type your name here",
+                    hintStyle: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey
+                    ),
+                  )
                 ),
               )
             ],
