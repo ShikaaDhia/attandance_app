@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:attandance_app/ui/attend/camera_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -30,7 +32,20 @@ Padding buildCapturePhotoSection(BuildContext context, Size size, XFile? image) 
             height: 150,
             child: DottedBorder(
               radius: const Radius.circular(10),
-              child: const FittedBox()
+              borderType: BorderType.RRect,
+              color: Colors.blueAccent,
+              strokeWidth: 1,
+              dashPattern: const [5, 5],
+              child: SizedBox.expand(
+                child: FittedBox(
+                  child: image != null
+                  ? Image.file(File(image.path), fit: BoxFit.cover)
+                  : const Icon(
+                    Icons.camera_enhance_outlined,
+                    color: Colors.blueAccent,
+                  )
+                )
+              )
             ),
           ),
         )
