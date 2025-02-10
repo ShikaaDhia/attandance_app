@@ -27,8 +27,15 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
             );
           } 
 
-          final data = snapShot.data.docs;
-        }
+          final data = snapShot.data!.docs;
+
+          return ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              // TODO put attendance card UI here.
+            },
+          );
+        },
       ), 
     );
   }
